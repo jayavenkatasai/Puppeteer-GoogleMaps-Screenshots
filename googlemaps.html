@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map;
+      var cities = [
+            { name: 'New Delhi', lat: 28.6139, lng: 77.2090, userS_COUNT: 200 },
+            { name: 'Mumbai', lat: 19.0760, lng: 72.8777, userS_COUNT: 150 },
+            { name: 'Bangalore', lat: 12.9716, lng: 77.5946, userS_COUNT: 180 },
+            { name: 'Chennai', lat: 13.0827, lng: 80.2707, userS_COUNT: 100 },
+            { name: 'Kolkata', lat: 22.5726, lng: 88.3639, userS_COUNT: 220 },
+            { name: 'Hyderabad', lat: 17.3850, lng: 78.4867, userS_COUNT: 170 },
+            { name: 'Pune', lat: 18.5204, lng: 73.8567, userS_COUNT: 120 },
+            { name: 'Jaipur', lat: 26.9124, lng: 75.7873, userS_COUNT: 90 },
+            { name: 'Ahmedabad', lat: 23.0225, lng: 72.5714, userS_COUNT: 80 },
+            { name: 'Chandigarh', lat: 30.7333, lng: 76.7794, userS_COUNT: 110 },
+            { name: 'Guntur', lat: 16.3008, lng: 80.4428, userS_COUNT: 130 }
+        ];
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 20.5937, lng: 78.9629 },
+          zoom: 5
+        });
+        var dotIcon = {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 5, // Adjust the scale to change the dot size
+                fillColor: 'red', // Change the fill color
+                fillOpacity: 1,
+                strokeColor: 'black',
+                strokeWeight: 1
+            };
+
+            cities.forEach(function (city) {
+                var marker = new google.maps.Marker({
+                    position: { lat: city.lat, lng: city.lng },
+                    map: map,
+                    title: city.name + ": " + city.userS_COUNT,
+                    icon: dotIcon // Set the custom dot icon
+                });
+            });
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/somanchiu/Keyless-Google-Maps-API@v6.6/mapsJavaScriptAPI.js"
+    async defer></script>
+  </body>
+</html>
